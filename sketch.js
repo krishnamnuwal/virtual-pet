@@ -18,8 +18,23 @@ function setup(){
     dog.addImage(dogImg)
     foodStock=database.ref('food');
     foodStock.on("value",readStock,showError)
-}
 
+    var input=createInput('Pet name');
+    var button=createButton('Start');
+
+    input.position(2100,700)
+    button.position(2200,750)
+  //button{font-size: 100px;}
+
+    button.mousePressed(function(){
+        input.hide();
+        button.hide();
+         var Dogname=input.value();
+
+       var feed=createButton("feed the "+Dogname);
+        feed.position(2000,700);
+    })
+}
 function draw(){
     background(bgImg);
     drawSprites();
@@ -53,7 +68,7 @@ function writeStock(x){
     database.ref('/').update({
     food:x
 })
-}
+}0
 function showError(){
     console.log("Error in writing the database")
 }
